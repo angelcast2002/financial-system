@@ -1,20 +1,26 @@
-"""Rutas de cuentas bancarias."""
+"""Endpoints de cuentas."""
 
 import random
 
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
+from app.auth import require_roles
 from app.database import get_db
 from app.models.account import Account
+from app.models.user import User
 from app.schemas.account_schema import AccountCreate, AccountResponse
 
 router = APIRouter(prefix="/accounts", tags=["Accounts"])
 
 
 @router.post("/", response_model=AccountResponse)
-def create_account(account: AccountCreate, db: Session = Depends(get_db)):
-    """POST /accounts: crea una cuenta para un cliente."""
+def create_account(
+    account: AccountCreate,
+    db: Session = Depends(get_db),
+    _: User = Depends(require_roles("admin")),
+):
+    """Crea una cuenta para un cliente."""
 
     account_number = str(random.randint(1000000000, 9999999999))
     db_account = Account(
@@ -29,6 +35,13 @@ def create_account(account: AccountCreate, db: Session = Depends(get_db)):
 
 @router.get("/", response_model=list[AccountResponse])
 def get_accounts(db: Session = Depends(get_db)):
-    """GET /accounts: lista cuentas."""
+    """Lista cuentas."""
 
     return db.query(Account).all()
+  
+
+@router.get("/customer/{customer_id}", response_model=list[AccountResponse])
+def get_accounts_by_customer(customer_id: int, db: Session = Depends(get_db)):
+    """Lista cuentas por cliente."""
+
+    return db.query(Account).filter(Account.customer_id == customer_id).all()

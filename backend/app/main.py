@@ -1,28 +1,31 @@
-"""Aplicación FastAPI principal.
+"""Punto de entrada de la API."""
 
-Registra routers y crea tablas al iniciar.
-"""
+from fastapi import Depends, FastAPI
 
-from fastapi import FastAPI
+from app.auth import get_current_active_user
 
 from app.database import Base, engine
 
-# Import de modelos para registrar metadatos antes de create_all.
-from app.models import account, customer, transaction
-from app.routers import account_router, customer_router, transaction_router
+# Importar modelos para registrar metadatos.
+from app.models import account, customer, transaction, user
+from app.models.user import User
+from app.routers import account_router, auth_router, customer_router, transaction_router, integration_router, seed_router
 
-# Crea tablas si no existen.
+# Crear tablas si no existen.
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-# Registro de rutas API.
-app.include_router(customer_router.router)
-app.include_router(account_router.router)
-app.include_router(transaction_router.router)
+# Registrar routers.
+app.include_router(auth_router.router)
+app.include_router(customer_router.router, dependencies=[Depends(get_current_active_user)])
+app.include_router(account_router.router, dependencies=[Depends(get_current_active_user)])
+app.include_router(transaction_router.router, dependencies=[Depends(get_current_active_user)])
+app.include_router(integration_router.router, dependencies=[Depends(get_current_active_user)])
+app.include_router(seed_router.router)
 
 
 @app.get("/")
-def root():
-    """Healthcheck básico del servicio."""
+def root(_: User = Depends(get_current_active_user)):
+    """Verifica que el servicio está activo."""
     return {"message": "Backend running correctly"}

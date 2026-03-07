@@ -1,17 +1,17 @@
-"""Schemas Pydantic de cuentas."""
+"""Esquemas de cuentas."""
 
 from pydantic import BaseModel
 from decimal import Decimal
 
 
 class AccountCreate(BaseModel):
-    """Body de creación de cuenta."""
+    """Datos para crear una cuenta."""
 
     customer_id: int
 
 
 class AccountResponse(BaseModel):
-    """Respuesta pública de cuenta."""
+    """Datos públicos de cuenta."""
 
     id: int
     account_number: str

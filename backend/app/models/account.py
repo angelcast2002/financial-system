@@ -9,7 +9,7 @@ from app.database import Base
 
 
 class Account(Base):
-    """Entidad cuenta bancaria."""
+    """Tabla de cuentas bancarias."""
 
     __tablename__ = "accounts"
 
@@ -18,7 +18,7 @@ class Account(Base):
     account_number = Column(String(20), unique=True, nullable=False, index=True)
     balance = Column(Numeric(12, 2), nullable=False, default=Decimal("0.00"))
 
-    # Relación N:1 con cliente.
+    # Cada cuenta pertenece a un cliente.
     customer = relationship("Customer", back_populates="accounts")
-    # Relación 1:N con transacciones.
+    # Cada cuenta puede tener múltiples transacciones.
     transactions = relationship("Transaction", back_populates="account", cascade="all, delete-orphan")

@@ -1,1 +1,1 @@
-"""Modelos ORM de la aplicación."""
+"""Modelos ORM."""

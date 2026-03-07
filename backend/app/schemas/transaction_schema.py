@@ -1,11 +1,11 @@
-"""Schemas Pydantic de transacciones."""
+"""Esquemas de transacciones."""
 
 from pydantic import BaseModel
 from decimal import Decimal
 
 
 class TransactionCreate(BaseModel):
-    """Body para registrar una transacción."""
+    """Datos para registrar una transacción."""
 
     account_id: int
     amount: Decimal
@@ -13,7 +13,7 @@ class TransactionCreate(BaseModel):
 
 
 class TransactionResponse(BaseModel):
-    """Respuesta pública de transacción."""
+    """Datos públicos de transacción."""
 
     id: int
     amount: Decimal

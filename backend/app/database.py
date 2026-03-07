@@ -1,4 +1,4 @@
-"""Inicialización de SQLAlchemy y sesiones por request."""
+"""Conexión y sesiones de base de datos."""
 
 from collections.abc import Generator
 
@@ -7,18 +7,18 @@ from sqlalchemy.orm import Session, declarative_base, sessionmaker
 
 from app.config import DATABASE_URL
 
-# Motor de conexión a PostgreSQL.
+# Engine principal de conexión.
 engine = create_engine(DATABASE_URL)
 
-# Fábrica de sesiones para operaciones de BD.
+# Fábrica de sesiones.
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# Base declarativa para los modelos ORM.
+# Base declarativa para modelos ORM.
 Base = declarative_base()
 
 
 def get_db() -> Generator[Session, None, None]:
-    """Dependencia FastAPI: abre una sesión y la cierra al finalizar."""
+    """Abre una sesión por request y la cierra al finalizar."""
     db = SessionLocal()
     try:
         yield db

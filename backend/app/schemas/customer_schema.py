@@ -1,11 +1,11 @@
-"""Schemas Pydantic de clientes."""
+"""Esquemas de clientes."""
 
 from pydantic import BaseModel, EmailStr
 from datetime import date
 
 
 class CustomerCreate(BaseModel):
-    """Body de creación de cliente."""
+    """Datos para crear un cliente."""
 
     first_name: str
     last_name: str
@@ -18,7 +18,7 @@ class CustomerCreate(BaseModel):
 
 
 class CustomerResponse(BaseModel):
-    """Respuesta pública de cliente."""
+    """Datos públicos de cliente."""
 
     id: int
     first_name: str

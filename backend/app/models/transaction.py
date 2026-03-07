@@ -9,7 +9,7 @@ from app.database import Base
 
 
 class Transaction(Base):
-    """Entidad transacción."""
+    """Tabla de transacciones."""
 
     __tablename__ = "transactions"
 
@@ -19,5 +19,5 @@ class Transaction(Base):
     type = Column(String(20), nullable=False)
     created_at = Column(DateTime, nullable=False, default=datetime.utcnow)
 
-    # Relación N:1 con cuenta.
+    # Cada transacción pertenece a una cuenta.
     account = relationship("Account", back_populates="transactions")

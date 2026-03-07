@@ -7,7 +7,7 @@ from app.database import Base
 
 
 class Customer(Base):
-    """Entidad cliente."""
+    """Tabla de clientes."""
 
     __tablename__ = "customers"
 
@@ -21,5 +21,5 @@ class Customer(Base):
     department = Column(String(100), nullable=False)
     municipality = Column(String(100), nullable=False)
 
-    # Relación 1:N con cuentas.
+    # Un cliente puede tener varias cuentas.
     accounts = relationship("Account", back_populates="customer", cascade="all, delete-orphan")
