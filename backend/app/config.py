@@ -32,7 +32,16 @@ CORS_ALLOWED_ORIGINS = [
     if origin.strip()
 ]
 
-# Cadena de conexión para SQLAlchemy.
-DATABASE_URL = (
-    f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@localhost:{POSTGRES_PORT}/{POSTGRES_DB}"
-)
+# === FIX DE CONEXIÓN ===
+# 1. Intentamos leer la URL completa (la que configuraste en Koyeb)
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+# 2. Si NO existe (estamos en tu computadora local), la armamos con las variables
+if not DATABASE_URL:
+    DATABASE_URL = (
+        f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@localhost:{POSTGRES_PORT}/{POSTGRES_DB}"
+    )
+
+# 3. Parche crítico: Koyeb entrega "postgres://" pero SQLAlchemy exige "postgresql://"
+if DATABASE_URL and DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
