@@ -1,0 +1,189 @@
+{
+  "app": {
+    "title": "Sistema Financiero",
+    "subtitle": "Panel principal de operación"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "emptyData": "No hay datos disponibles",
+    "actions": {
+      "seeMore": "Ver más",
+      "save": "Guardar",
+      "saving": "Guardando...",
+      "reorder": "Reordenar bloque",
+      "settings": "Configuración",
+      "notifications": "Notificaciones",
+      "openMenu": "Abrir menú",
+      "closeMenu": "Cerrar menú"
+    },
+    "user": {
+      "avatarAlt": "Avatar de usuario"
+    },
+    "days": {
+      "monday": "Lunes",
+      "tuesday": "Martes",
+      "wednesday": "Miércoles",
+      "thursday": "Jueves",
+      "friday": "Viernes",
+      "saturday": "Sábado",
+      "sunday": "Domingo"
+    },
+    "months": {
+      "march": "Marzo",
+      "april": "Abril",
+      "may": "Mayo",
+      "june": "Junio",
+      "july": "Julio",
+      "august": "Agosto",
+      "september": "Septiembre",
+      "october": "Octubre",
+      "november": "Noviembre",
+      "december": "Diciembre",
+      "january": "Enero",
+      "february": "Febrero"
+    }
+  },
+  "sidebar": {
+    "brand": "FinanceApp",
+    "language": "Idioma",
+    "user": {
+      "upload": "Subir foto de perfil",
+      "uploading": "Subiendo imagen...",
+      "uploadError": "No fue posible subir la imagen",
+      "uploadInvalidType": "Formato inválido. Usa PNG, JPG, WEBP o GIF",
+      "uploadTooLarge": "La imagen excede 5 MB"
+    },
+    "lang": {
+      "es": "ES",
+      "en": "EN"
+    },
+    "nav": {
+      "home": "Inicio",
+      "transactions": "Transacciones",
+      "accounts": "Cuentas"
+    },
+    "logout": "Cerrar sesión"
+  },
+  "pages": {
+    "home": {
+      "title": "Inicio"
+    },
+    "accounts": {
+      "title": "Cuentas"
+    },
+    "register": {
+      "title": "Registrar Cuenta"
+    }
+  },
+  "cards": {
+    "balance": "Saldo",
+    "holder": "Titular",
+    "expiry": "Vencimiento"
+  },
+  "charts": {
+    "deposit": "Depósito",
+    "withdraw": "Retiro",
+    "total": "Total"
+  },
+  "transfer": {
+    "amount": "Escribe la cantidad",
+    "send": "Enviar"
+  },
+  "dashboard": {
+    "cards": {
+      "title": "Mis Tarjetas"
+    },
+    "weekly": {
+      "title": "Actividad Semanal"
+    },
+    "recent": {
+      "title": "Transacciones Recientes"
+    },
+    "expense": {
+      "title": "Estadísticas de Gastos",
+      "labels": {
+        "entertainment": "Entretenimiento",
+        "bills": "Facturas",
+        "others": "Otros",
+        "investment": "Inversión"
+      }
+    },
+    "transfer": {
+      "title": "Transferencia Rápida"
+    },
+    "history": {
+      "title": "Historial de Saldo"
+    }
+  },
+  "accounts": {
+    "stats": {
+      "balance": "Mi Saldo",
+      "income": "Ingresos",
+      "expenses": "Gastos",
+      "savings": "Ahorro Total"
+    },
+    "recent": {
+      "title": "Transacciones Recientes"
+    },
+    "card": {
+      "title": "Mi Tarjeta"
+    },
+    "summary": {
+      "title": "Resumen General de Crédito y Débito",
+      "subtitle": "$7,560 Debitado y $5,420 Acreditado en esta semana",
+      "debit": "Débito",
+      "credit": "Crédito"
+    },
+    "scheduled": {
+      "title": "Pagos Programados"
+    }
+  },
+  "register": {
+    "tabs": {
+      "client": "Cliente"
+    },
+    "actions": {
+      "editAvatar": "Editar foto"
+    },
+    "form": {
+      "firstName": "Nombres",
+      "lastName": "Apellidos",
+      "email": "Correo",
+      "dpi": "DPI",
+      "birthDate": "Fecha de Nacimiento",
+      "birthDateHint": "Debes ser mayor de 18 años",
+      "birthDateRequired": "La fecha de nacimiento es obligatoria",
+      "birthDateUnderage": "Debes ser mayor de 18 años",
+      "birthDateFuture": "La fecha no puede ser futura",
+      "birthDateInvalid": "Fecha de nacimiento inválida",
+      "address": "Dirección",
+      "department": "Departamento",
+      "selectDepartment": "Selecciona un departamento",
+      "selectDepartmentFirst": "Primero selecciona un departamento",
+      "selectMunicipality": "Selecciona un municipio",
+      "municipality": "Municipio"
+    },
+    "messages": {
+      "successTitle": "Registro completado",
+      "success": "Cuenta y cliente creados correctamente.",
+      "errorTitle": "No se pudo completar",
+      "loadError": "No fue posible cargar los datos del cliente.",
+      "error": "No fue posible guardar el registro."
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Iniciar sesión",
+      "subtitle": "Accede con tu usuario para consumir los datos.",
+      "username": "Usuario o correo",
+      "usernamePlaceholder": "tu_usuario o correo@dominio.com",
+      "password": "Contraseña",
+      "passwordPlaceholder": "Ingresa tu contraseña",
+      "submit": "Entrar",
+      "loading": "Validando...",
+      "errorTitle": "Error de autenticación",
+      "error": "No fue posible iniciar sesión",
+      "redirectError": "La sesión fue creada, pero no se pudo abrir el dashboard"
+    }
+  }
+}

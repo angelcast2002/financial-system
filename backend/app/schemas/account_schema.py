@@ -14,6 +14,7 @@ class AccountResponse(BaseModel):
     """Datos públicos de cuenta."""
 
     id: int
+    customer_id: int
     account_number: str
     balance: Decimal
 

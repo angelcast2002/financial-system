@@ -1,0 +1,74 @@
+<div class="p-4 sm:p-5 lg:p-8">
+  <app-page-header titleKey="pages.accounts.title"></app-page-header>
+
+  <div
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    class="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4"
+    (cdkDropListDropped)="reorderStats($event)"
+  >
+    @for (stat of stats; track stat.labelKey) {
+      <div cdkDrag class="cursor-grab active:cursor-grabbing">
+        <app-stat-tile
+          [labelKey]="stat.labelKey"
+          [value]="stat.value"
+          [icon]="stat.icon"
+          [tone]="stat.tone ?? 'primary'"
+        ></app-stat-tile>
+      </div>
+    }
+  </div>
+
+  <div
+    cdkDropList
+    cdkDropListOrientation="mixed"
+    class="mt-6 grid gap-6 xl:grid-cols-2"
+    (cdkDropListDropped)="reorderSections($event)"
+  >
+    @for (section of sections; track section) {
+      <div
+        cdkDrag
+        animate.enter="ui-enter"
+        animate.leave="ui-leave"
+        class="min-w-0 cursor-default"
+      >
+        @switch (section) {
+          @case ('recent') {
+            <app-panel titleKey="accounts.recent.title" [draggable]="true">
+              <app-transaction-list [items]="recentTransactions"></app-transaction-list>
+            </app-panel>
+          }
+
+          @case ('card') {
+            <app-panel titleKey="accounts.card.title" actionKey="common.actions.seeMore" [draggable]="true">
+              @if (primaryCard) {
+                <app-bank-card
+                  variant="primary"
+                  [balance]="primaryCard.balance"
+                  [holder]="primaryCard.holder"
+                  [expiry]="primaryCard.expiry"
+                  [number]="primaryCard.number"
+                ></app-bank-card>
+              } @else {
+                <p class="text-sm font-semibold text-app-muted">{{ 'common.emptyData' | translate }}</p>
+              }
+            </app-panel>
+          }
+
+          @case ('summary') {
+            <app-panel titleKey="accounts.summary.title" [draggable]="true">
+              <p class="mb-4 text-sm font-semibold text-app-muted">{{ 'accounts.summary.subtitle' | translate }}</p>
+              <app-bar-chart [labels]="summaryLabels" [series]="summarySeries"></app-bar-chart>
+            </app-panel>
+          }
+
+          @case ('scheduled') {
+            <app-panel titleKey="accounts.scheduled.title" [draggable]="true">
+              <app-transaction-list [items]="scheduledPayments"></app-transaction-list>
+            </app-panel>
+          }
+        }
+      </div>
+    }
+  </div>
+</div>

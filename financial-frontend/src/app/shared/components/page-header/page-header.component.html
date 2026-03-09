@@ -1,0 +1,57 @@
+<header
+  class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
+>
+  <h1 class="app-panel-title text-xl sm:text-2xl">
+    {{ titleKey | translate }}
+  </h1>
+
+  <div class="flex w-full items-center justify-end gap-2 sm:w-auto sm:gap-3">
+    @for (action of actions; track action.labelKey) {
+      <button
+        type="button"
+        class="app-icon-btn"
+        [attr.aria-label]="action.labelKey | translate"
+      >
+        <app-icon
+          class="flex items-center justify-center"
+          [name]="action.icon"
+          [size]="18"
+        ></app-icon>
+      </button>
+    }
+
+    @if (authService.user(); as user) {
+      <div class="hidden text-right md:block">
+        <p class="text-sm font-semibold text-app-ink">{{ user.username }}</p>
+        <p class="text-xs font-semibold text-app-muted">{{ user.email }}</p>
+      </div>
+
+      @if (user.profile_image_url) {
+        <img
+          [src]="user.profile_image_url"
+          [alt]="'common.user.avatarAlt' | translate"
+          class="h-11 w-11 rounded-full border border-app-border object-cover shadow-app-soft"
+          loading="lazy"
+          decoding="async"
+        />
+      } @else {
+        <div
+          class="flex h-11 w-11 items-center justify-center rounded-full bg-app-primary/15 text-base font-bold text-app-primary shadow-app-soft"
+          [attr.aria-label]="'common.user.avatarAlt' | translate"
+        >
+          {{ userInitial }}
+        </div>
+      }
+    } @else {
+      <div
+        class="flex h-11 w-11 items-center justify-center rounded-full bg-app-surface-soft text-app-muted shadow-app-soft"
+      >
+        <app-icon
+          class="flex items-center justify-center"
+          name="user"
+          [size]="18"
+        ></app-icon>
+      </div>
+    }
+  </div>
+</header>

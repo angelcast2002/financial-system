@@ -1,8 +1,10 @@
 """Punto de entrada de la API."""
 
 from fastapi import Depends, FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.auth import get_current_active_user
+from app.config import CORS_ALLOWED_ORIGINS
 
 from app.database import Base, engine
 
@@ -15,6 +17,14 @@ from app.routers import account_router, auth_router, customer_router, transactio
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=CORS_ALLOWED_ORIGINS,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Registrar routers.
 app.include_router(auth_router.router)

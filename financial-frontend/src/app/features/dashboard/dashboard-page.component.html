@@ -1,0 +1,74 @@
+<div class="p-4 sm:p-5 lg:p-8">
+  <app-page-header titleKey="pages.home.title"></app-page-header>
+
+  <div
+    cdkDropList
+    cdkDropListOrientation="mixed"
+    class="grid gap-6 xl:grid-cols-2"
+    (cdkDropListDropped)="reorderSections($event)"
+  >
+    @for (section of sections; track section) {
+      <div
+        cdkDrag
+        animate.enter="ui-enter"
+        animate.leave="ui-leave"
+        class="min-w-0 cursor-default"
+      >
+        @switch (section) {
+          @case ('weekly') {
+            <app-panel titleKey="dashboard.weekly.title" [draggable]="true">
+              <app-bar-chart [labels]="weeklyLabels" [series]="weeklySeries"></app-bar-chart>
+            </app-panel>
+          }
+
+          @case ('cards') {
+            <app-panel titleKey="dashboard.cards.title" actionKey="common.actions.seeMore" [draggable]="true">
+              <div
+                cdkDropList
+                cdkDropListOrientation="horizontal"
+                  class="grid gap-4 sm:grid-cols-2"
+                (cdkDropListDropped)="reorderCards($event)"
+              >
+                @for (card of cards; track card.id) {
+                  <div cdkDrag class="min-w-0 cursor-grab active:cursor-grabbing">
+                    <app-bank-card
+                      [variant]="card.variant"
+                      [balance]="card.balance"
+                      [holder]="card.holder"
+                      [expiry]="card.expiry"
+                      [number]="card.number"
+                    ></app-bank-card>
+                  </div>
+                }
+              </div>
+            </app-panel>
+          }
+
+          @case ('recent') {
+            <app-panel titleKey="dashboard.recent.title" [draggable]="true">
+              <app-transaction-list [items]="recentTransactions"></app-transaction-list>
+            </app-panel>
+          }
+
+          @case ('expense') {
+            <app-panel titleKey="dashboard.expense.title" [draggable]="true">
+              <app-donut-chart [slices]="expenseSlices"></app-donut-chart>
+            </app-panel>
+          }
+
+          @case ('transfer') {
+            <app-panel titleKey="dashboard.transfer.title" [draggable]="true">
+              <app-quick-transfer [contacts]="contacts"></app-quick-transfer>
+            </app-panel>
+          }
+
+          @case ('history') {
+            <app-panel titleKey="dashboard.history.title" [draggable]="true">
+              <app-line-chart [points]="balancePoints" [labels]="balanceLabels"></app-line-chart>
+            </app-panel>
+          }
+        }
+      </div>
+    }
+  </div>
+</div>

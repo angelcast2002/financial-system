@@ -3,14 +3,14 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from app.auth import require_roles
+from app.auth import get_current_active_user, require_roles
 from app.database import get_db
 from app.models.account import Account
 from app.models.transaction import Transaction
 from app.models.user import User
 from app.schemas.transaction_schema import TransactionCreate, TransactionResponse
 
-router = APIRouter(prefix="/transactions", tags=["Transactions"])
+router = APIRouter(prefix="/api/transactions", tags=["Transactions"])
 
 
 @router.post("/", response_model=TransactionResponse)
@@ -46,7 +46,19 @@ def create_transaction(
   
 
 @router.get("/account/{account_id}", response_model=list[TransactionResponse])
-def get_transactions_by_account(account_id: int, db: Session = Depends(get_db)):
+def get_transactions_by_account(
+    account_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_active_user),
+):
     """Lista transacciones por cuenta."""
+
+    account = db.query(Account).filter(Account.id == account_id).first()
+    if not account:
+        raise HTTPException(status_code=404, detail="Account not found")
+
+    is_admin = current_user.role.lower() == "admin"
+    if not is_admin and account.customer_id != current_user.id:
+        raise HTTPException(status_code=403, detail="Not enough permissions")
 
     return db.query(Transaction).filter(Transaction.account_id == account_id).all()

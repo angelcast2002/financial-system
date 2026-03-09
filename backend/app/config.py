@@ -17,6 +17,21 @@ ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "30")
 REFRESH_TOKEN_EXPIRE_DAYS = int(os.getenv("REFRESH_TOKEN_EXPIRE_DAYS", "7"))
 ADMIN_REGISTRATION_KEY = os.getenv("ADMIN_REGISTRATION_KEY")
 
+DEFAULT_CORS_ALLOWED_ORIGINS = ",".join(
+    [
+        "https://localhost:4200",
+        "http://localhost:4200",
+        "https://127.0.0.1:4200",
+        "http://127.0.0.1:4200",
+    ]
+)
+
+CORS_ALLOWED_ORIGINS = [
+    origin.strip()
+    for origin in os.getenv("CORS_ALLOWED_ORIGINS", DEFAULT_CORS_ALLOWED_ORIGINS).split(",")
+    if origin.strip()
+]
+
 # Cadena de conexión para SQLAlchemy.
 DATABASE_URL = (
     f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@localhost:{POSTGRES_PORT}/{POSTGRES_DB}"

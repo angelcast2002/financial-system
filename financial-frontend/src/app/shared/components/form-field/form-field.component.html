@@ -1,0 +1,20 @@
+<label class="app-label">{{ labelKey | translate }}</label>
+
+@switch (type) {
+  @case ('select') {
+    <select class="app-input" [value]="value">
+      @for (item of options; track item.value) {
+        <option [value]="item.value">{{ item.label }}</option>
+      }
+    </select>
+  }
+
+  @default {
+    <input
+      class="app-input"
+      [type]="type"
+      [value]="value"
+      [placeholder]="placeholder"
+    />
+  }
+}

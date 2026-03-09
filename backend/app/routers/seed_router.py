@@ -10,7 +10,9 @@ router = APIRouter(prefix="/seed", tags=["Seed"])
 
 
 @router.post("/")
-async def seed(db: Session = Depends(get_db)):
+async def seed(
+    db: Session = Depends(get_db),
+):
     """Ejecuta la carga de datos semilla."""
 
     return await seed_database(db)

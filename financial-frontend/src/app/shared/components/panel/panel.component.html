@@ -1,0 +1,30 @@
+<section [class]="containerClass">
+  @if (titleKey || actionKey || actionText) {
+    <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex min-w-0 items-center gap-2">
+        @if (draggable) {
+          <button
+            cdkDragHandle
+            type="button"
+            class="app-icon-btn h-8 w-8 shrink-0 cursor-grab active:cursor-grabbing"
+            [attr.aria-label]="'common.actions.reorder' | translate"
+          >
+            <app-icon name="drag" [size]="16"></app-icon>
+          </button>
+        }
+
+        @if (titleKey) {
+          <h2 class="app-section-title truncate">{{ titleKey | translate }}</h2>
+        }
+      </div>
+
+      @if (actionKey || actionText) {
+        <button type="button" class="text-sm font-semibold text-app-muted transition hover:text-app-primary sm:ml-auto">
+          {{ actionKey ? (actionKey | translate) : actionText }}
+        </button>
+      }
+    </div>
+  }
+
+  <ng-content></ng-content>
+</section>

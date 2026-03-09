@@ -1,0 +1,21 @@
+<div class="flex w-full flex-col items-center gap-6 lg:flex-row lg:items-center lg:justify-center lg:gap-8">
+  <div class="relative h-52 w-52 sm:h-56 sm:w-56">
+    <canvas baseChart [type]="'doughnut'" [data]="chartData" [options]="chartOptions"></canvas>
+    <div class="pointer-events-none absolute inset-0 flex items-center justify-center text-center">
+      <div>
+        <p class="text-xs font-semibold text-app-muted">{{ 'charts.total' | translate }}</p>
+        <p class="text-2xl font-bold text-app-ink">{{ total }}</p>
+      </div>
+    </div>
+  </div>
+
+  <ul class="w-full max-w-xs space-y-3">
+    @for (item of translatedSlices; track item.label) {
+      <li class="flex items-center gap-3">
+        <span class="inline-block h-3 w-3 rounded-full" [style.background]="item.color"></span>
+        <span class="min-w-0 flex-1 truncate text-sm font-semibold text-app-ink">{{ item.label }}</span>
+        <span class="text-sm font-bold text-app-muted">{{ getPercent(item.value) }}</span>
+      </li>
+    }
+  </ul>
+</div>

@@ -1,1 +1,171 @@
-<p>sidebar works!</p>
+<aside
+  class="flex h-full w-[250px] shrink-0 flex-col overflow-y-auto border-r border-app-border bg-app-surface px-5 py-6"
+>
+  <div
+    class="flex items-center"
+    [ngClass]="showMobileClose ? 'justify-between' : 'justify-center'"
+  >
+    <div
+      class="flex h-14 w-14 items-center justify-center rounded-full bg-app-accent/20 text-app-accent"
+    >
+      <app-icon name="brand" [size]="28"></app-icon>
+    </div>
+
+    @if (showMobileClose) {
+      <button
+        type="button"
+        class="app-icon-btn h-9 w-9 lg:hidden"
+        [attr.aria-label]="'common.actions.closeMenu' | translate"
+        (click)="requestClose()"
+      >
+        <span class="material-symbols-rounded text-[20px]" aria-hidden="true"
+          >close</span
+        >
+      </button>
+    }
+  </div>
+
+  @if (authService.user(); as user) {
+    <section
+      class="mt-7 rounded-2xl border border-app-border bg-app-surface-soft p-3"
+    >
+      <div class="flex items-center gap-3">
+        <div class="relative h-12 w-12 shrink-0">
+          @if (user.profile_image_url) {
+            <img
+              [src]="user.profile_image_url"
+              [alt]="'common.user.avatarAlt' | translate"
+              class="h-12 w-12 rounded-full border border-app-border object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          } @else {
+            <div
+              class="flex h-12 w-12 items-center justify-center rounded-full border border-app-border bg-app-surface text-sm font-bold text-app-primary"
+            >
+              {{ userInitial }}
+            </div>
+          }
+
+          <label
+            class="absolute -bottom-1 -right-1 flex h-6 w-6 cursor-pointer items-center justify-center rounded-full bg-app-primary text-white"
+            [attr.aria-label]="'sidebar.user.upload' | translate"
+          >
+            <input
+              type="file"
+              accept="image/png,image/jpeg,image/webp,image/gif"
+              class="hidden"
+              (change)="onAvatarSelected($event)"
+            />
+            <app-icon name="edit" [size]="12"></app-icon>
+          </label>
+        </div>
+
+        <div class="min-w-0">
+          <p class="truncate text-sm font-semibold text-app-ink">
+            {{ user.username }}
+          </p>
+          <p class="truncate text-xs font-semibold text-app-muted">
+            {{ user.email }}
+          </p>
+        </div>
+      </div>
+
+      @if (isUploadingImage()) {
+        <div class="mt-2">
+          <app-loader
+            [size]="14"
+            [stroke]="2"
+            labelKey="sidebar.user.uploading"
+          ></app-loader>
+        </div>
+      }
+
+      @if (uploadErrorKey()) {
+        <p class="mt-2 text-xs font-semibold text-app-danger">
+          {{ uploadErrorKey() | translate }}
+        </p>
+      }
+    </section>
+  }
+
+  <nav class="mt-10 space-y-2">
+    @for (item of navItems; track item.route) {
+      <a
+        [routerLink]="item.route"
+        routerLinkActive="text-app-primary"
+        #isActive="routerLinkActive"
+        class="group relative flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-app-muted transition hover:text-app-primary"
+        (click)="requestClose()"
+      >
+        <span
+          class="absolute -left-5 h-8 w-1 rounded-r-full bg-app-primary transition"
+          [class.opacity-100]="isActive.isActive"
+          [class.opacity-0]="!isActive.isActive"
+        ></span>
+
+        <app-icon
+          class="flex items-center justify-center"
+          [name]="item.icon"
+          [size]="18"
+          [className]="
+            isActive.isActive
+              ? 'text-app-primary'
+              : 'text-app-muted group-hover:text-app-primary'
+          "
+        ></app-icon>
+
+        <span>{{ item.labelKey | translate }}</span>
+      </a>
+    }
+  </nav>
+
+  <div class="mt-auto space-y-5">
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-wide text-app-muted">
+        {{ "sidebar.language" | translate }}
+      </p>
+      <div
+        class="mt-2 inline-flex rounded-xl border border-app-border bg-app-surface-soft p-1"
+      >
+        <button
+          type="button"
+          class="rounded-lg px-3 py-1.5 text-xs font-semibold transition"
+          [ngClass]="
+            isLanguageActive('es')
+              ? 'bg-app-primary text-white'
+              : 'text-app-muted'
+          "
+          (click)="changeLanguage('es')"
+        >
+          {{ "sidebar.lang.es" | translate }}
+        </button>
+        <button
+          type="button"
+          class="rounded-lg px-3 py-1.5 text-xs font-semibold transition"
+          [ngClass]="
+            isLanguageActive('en')
+              ? 'bg-app-primary text-white'
+              : 'text-app-muted'
+          "
+          (click)="changeLanguage('en')"
+        >
+          {{ "sidebar.lang.en" | translate }}
+        </button>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class="flex w-full items-center justify-center gap-2 rounded-xl bg-app-surface-soft px-4 py-2.5 text-sm font-semibold text-app-muted transition hover:text-app-danger"
+      (click)="logout()"
+    >
+      <app-icon
+        class="flex items-center justify-center"
+        name="logout"
+        [size]="16"
+      ></app-icon>
+      <span>{{ "sidebar.logout" | translate }}</span>
+    </button>
+  </div>
+</aside>

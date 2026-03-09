@@ -2,6 +2,7 @@
 
 from pydantic import BaseModel
 from decimal import Decimal
+from datetime import datetime
 
 
 class TransactionCreate(BaseModel):
@@ -16,8 +17,10 @@ class TransactionResponse(BaseModel):
     """Datos públicos de transacción."""
 
     id: int
+    account_id: int
     amount: Decimal
     type: str
+    created_at: datetime
 
     class Config:
         from_attributes = True

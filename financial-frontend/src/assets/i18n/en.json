@@ -1,0 +1,189 @@
+{
+  "app": {
+    "title": "Financial System",
+    "subtitle": "Main operations dashboard"
+  },
+  "common": {
+    "loading": "Loading...",
+    "emptyData": "No data available",
+    "actions": {
+      "seeMore": "See more",
+      "save": "Save",
+      "saving": "Saving...",
+      "reorder": "Reorder section",
+      "settings": "Settings",
+      "notifications": "Notifications",
+      "openMenu": "Open menu",
+      "closeMenu": "Close menu"
+    },
+    "user": {
+      "avatarAlt": "User avatar"
+    },
+    "days": {
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday"
+    },
+    "months": {
+      "march": "March",
+      "april": "April",
+      "may": "May",
+      "june": "June",
+      "july": "July",
+      "august": "August",
+      "september": "September",
+      "october": "October",
+      "november": "November",
+      "december": "December",
+      "january": "January",
+      "february": "February"
+    }
+  },
+  "sidebar": {
+    "brand": "FinanceApp",
+    "language": "Language",
+    "user": {
+      "upload": "Upload profile photo",
+      "uploading": "Uploading image...",
+      "uploadError": "Could not upload image",
+      "uploadInvalidType": "Invalid format. Use PNG, JPG, WEBP or GIF",
+      "uploadTooLarge": "Image size exceeds 5 MB"
+    },
+    "lang": {
+      "es": "ES",
+      "en": "EN"
+    },
+    "nav": {
+      "home": "Home",
+      "transactions": "Transactions",
+      "accounts": "Accounts"
+    },
+    "logout": "Log out"
+  },
+  "pages": {
+    "home": {
+      "title": "Home"
+    },
+    "accounts": {
+      "title": "Accounts"
+    },
+    "register": {
+      "title": "Register Account"
+    }
+  },
+  "cards": {
+    "balance": "Balance",
+    "holder": "Card Holder",
+    "expiry": "Expires"
+  },
+  "charts": {
+    "deposit": "Deposit",
+    "withdraw": "Withdraw",
+    "total": "Total"
+  },
+  "transfer": {
+    "amount": "Write amount",
+    "send": "Send"
+  },
+  "dashboard": {
+    "cards": {
+      "title": "My Cards"
+    },
+    "weekly": {
+      "title": "Weekly Activity"
+    },
+    "recent": {
+      "title": "Recent Transactions"
+    },
+    "expense": {
+      "title": "Expense Statistics",
+      "labels": {
+        "entertainment": "Entertainment",
+        "bills": "Bills",
+        "others": "Others",
+        "investment": "Investment"
+      }
+    },
+    "transfer": {
+      "title": "Quick Transfer"
+    },
+    "history": {
+      "title": "Balance History"
+    }
+  },
+  "accounts": {
+    "stats": {
+      "balance": "My Balance",
+      "income": "Income",
+      "expenses": "Expenses",
+      "savings": "Total Savings"
+    },
+    "recent": {
+      "title": "Recent Transactions"
+    },
+    "card": {
+      "title": "My Card"
+    },
+    "summary": {
+      "title": "Credit and Debit Overview",
+      "subtitle": "$7,560 Debited and $5,420 Credited this week",
+      "debit": "Debit",
+      "credit": "Credit"
+    },
+    "scheduled": {
+      "title": "Scheduled Payments"
+    }
+  },
+  "register": {
+    "tabs": {
+      "client": "Client"
+    },
+    "actions": {
+      "editAvatar": "Edit photo"
+    },
+    "form": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "dpi": "DPI",
+      "birthDate": "Birth Date",
+      "birthDateHint": "You must be at least 18 years old",
+      "birthDateRequired": "Birth date is required",
+      "birthDateUnderage": "You must be at least 18 years old",
+      "birthDateFuture": "Birth date cannot be in the future",
+      "birthDateInvalid": "Invalid birth date",
+      "address": "Address",
+      "department": "Department",
+      "selectDepartment": "Select a department",
+      "selectDepartmentFirst": "Select a department first",
+      "selectMunicipality": "Select a municipality",
+      "municipality": "Municipality"
+    },
+    "messages": {
+      "successTitle": "Registration completed",
+      "success": "Customer and account created successfully.",
+      "errorTitle": "Could not complete",
+      "loadError": "Could not load customer data.",
+      "error": "Unable to save the registration."
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Sign in",
+      "subtitle": "Authenticate to consume the data.",
+      "username": "Username or email",
+      "usernamePlaceholder": "your_user or mail@domain.com",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "submit": "Login",
+      "loading": "Validating...",
+      "errorTitle": "Authentication error",
+      "error": "Unable to sign in",
+      "redirectError": "Session created, but dashboard navigation failed"
+    }
+  }
+}
