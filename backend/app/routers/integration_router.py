@@ -9,3 +9,4 @@ router = APIRouter(prefix="/api/integration", tags=["Integration"])
 @router.get("/integrated-data")
 async def integrated_data():
     """Devuelve datos integrados de servicios externos."""
+    return await get_integrated_data()
