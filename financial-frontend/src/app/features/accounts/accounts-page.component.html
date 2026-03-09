@@ -8,7 +8,7 @@
     (cdkDropListDropped)="reorderStats($event)"
   >
     @for (stat of stats; track stat.labelKey) {
-      <div cdkDrag class="cursor-grab active:cursor-grabbing">
+      <div cdkDrag [cdkDragStartDelay]="dragStartDelay" class="cursor-grab active:cursor-grabbing">
         <app-stat-tile
           [labelKey]="stat.labelKey"
           [value]="stat.value"
@@ -28,6 +28,7 @@
     @for (section of sections; track section) {
       <div
         cdkDrag
+        [cdkDragStartDelay]="dragStartDelay"
         animate.enter="ui-enter"
         animate.leave="ui-leave"
         class="min-w-0 cursor-default"

@@ -5,6 +5,9 @@ import { IconName } from '../../models/ui.models';
 @Component({
   selector: 'app-icon',
   standalone: true,
+  host: {
+    class: 'flex items-center justify-center',
+  },
   template: `
     <span
       [class]="'material-symbols-rounded ' + className"

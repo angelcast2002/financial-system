@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { catchError, map, of, startWith, switchMap, tap } from 'rxjs';
@@ -61,7 +60,6 @@ function adultBirthDateValidator(control: AbstractControl<string>): ValidationEr
   selector: 'app-register-account-page',
   standalone: true,
   imports: [
-    DragDropModule,
     ReactiveFormsModule,
     TranslateModule,
     PageHeaderComponent,
@@ -163,14 +161,6 @@ export class RegisterAccountPageComponent {
 
   trackByField(_index: number, field: RegisterFieldKey): string {
     return field;
-  }
-
-  reorderFields(event: CdkDragDrop<RegisterFieldKey[]>): void {
-    if (event.previousIndex === event.currentIndex) {
-      return;
-    }
-
-    moveItemInArray(this.fields, event.previousIndex, event.currentIndex);
   }
 
   getLabelKey(field: RegisterFieldKey): string {

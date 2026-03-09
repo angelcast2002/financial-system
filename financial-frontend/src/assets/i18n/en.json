@@ -176,7 +176,7 @@
       "title": "Sign in",
       "subtitle": "Authenticate to consume the data.",
       "username": "Username or email",
-      "usernamePlaceholder": "your_user or mail@domain.com",
+      "usernamePlaceholder": "user or mail@domain.com",
       "password": "Password",
       "passwordPlaceholder": "Enter your password",
       "submit": "Login",

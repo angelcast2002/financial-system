@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, DragDropModule, DragStartDelay, moveItemInArray } from '@angular/cdk/drag-drop';
 import { catchError, forkJoin, map, of, switchMap } from 'rxjs';
 
 import { ApiAccount, ApiCustomer, ApiTransaction } from '../../core/models/api.models';
@@ -46,6 +46,8 @@ export class DashboardPageComponent implements OnInit {
   private readonly financialApiService = inject(FinancialApiService);
   private readonly cdr = inject(ChangeDetectorRef);
   private readonly destroyRef = inject(DestroyRef);
+
+  readonly cardDragStartDelay: DragStartDelay = { touch: 500, mouse: 0 };
 
   sections: DashboardSectionId[] = ['weekly', 'cards', 'recent', 'expense', 'transfer', 'history'];
 

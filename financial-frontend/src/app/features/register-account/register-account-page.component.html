@@ -66,19 +66,15 @@
 
         <form
           id="register-customer-form"
-          cdkDropList
-          cdkDropListOrientation="vertical"
           class="grid gap-4 sm:gap-5 md:grid-cols-2"
           [formGroup]="form"
           (ngSubmit)="submit()"
-          (cdkDropListDropped)="reorderFields($event)"
         >
           @for (field of fields; track field) {
             <div
-              cdkDrag
               animate.enter="ui-enter"
               animate.leave="ui-leave"
-              class="min-w-0 cursor-grab active:cursor-grabbing"
+              class="min-w-0"
             >
               <label class="app-label">{{ getLabelKey(field) | translate }}</label>
 

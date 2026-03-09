@@ -176,7 +176,7 @@
       "title": "Iniciar sesión",
       "subtitle": "Accede con tu usuario para consumir los datos.",
       "username": "Usuario o correo",
-      "usernamePlaceholder": "tu_usuario o correo@dominio.com",
+      "usernamePlaceholder": "usuario o correo@dominio.com",
       "password": "Contraseña",
       "passwordPlaceholder": "Ingresa tu contraseña",
       "submit": "Entrar",

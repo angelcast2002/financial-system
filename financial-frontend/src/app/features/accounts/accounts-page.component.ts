@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, DragDropModule, DragStartDelay, moveItemInArray } from '@angular/cdk/drag-drop';
 import { catchError, forkJoin, map, of, switchMap } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -36,6 +36,8 @@ export class AccountsPageComponent implements OnInit {
   private readonly financialApiService = inject(FinancialApiService);
   private readonly cdr = inject(ChangeDetectorRef);
   private readonly destroyRef = inject(DestroyRef);
+
+  readonly dragStartDelay: DragStartDelay = { touch: 500, mouse: 0 };
 
   sections: AccountsSectionId[] = ['recent', 'card', 'summary', 'scheduled'];
 
